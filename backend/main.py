@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from database import initialize_database
+from routes import router
+
 app = FastAPI(
     title="Academia-Industry Collaboration Platform",
     description="AI-enabled platform for skill mapping, internships and placements",
@@ -16,6 +19,13 @@ app.add_middleware(
 )
 
 
+# Initialize database
+initialize_database()
+
+# Register API routes
+app.include_router(router, prefix="/api")
+
+
 @app.get("/")
 def home():
     return {
@@ -24,7 +34,7 @@ def home():
     }
 
 
-@app.get("/api/health")
+@app.get("/health")
 def health_check():
     return {
         "status": "healthy"
