@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from database import initialize_database
-from routes import router
+from .database import initialize_database
+from .routes import router
 
 app = FastAPI(
     title="Academia-Industry Collaboration Platform",
