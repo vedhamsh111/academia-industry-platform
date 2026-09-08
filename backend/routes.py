@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from database import get_connection
-from models import StudentCreate, CompanyCreate, OpportunityCreate
+from .database import get_connection
+from .models import StudentCreate, CompanyCreate, OpportunityCreate
 from ai.matching import calculate_match
 router = APIRouter()
 
