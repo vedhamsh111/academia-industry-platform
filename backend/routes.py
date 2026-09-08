@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from database import get_connection
 from models import StudentCreate, CompanyCreate, OpportunityCreate
-
+from ai.matching import calculate_match
 router = APIRouter()
 
 
@@ -190,6 +190,14 @@ def get_opportunities():
     """)
 
     opportunities = [dict(row) for row in cursor.fetchall()]
+    @router.post("/match")
+def match_skills(student_skills: str, required_skills: str):
+    result = calculate_match(
+        student_skills,
+        required_skills
+    )
+
+    return result
 
     connection.close()
 
