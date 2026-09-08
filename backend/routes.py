@@ -202,3 +202,11 @@ def match_skills(student_skills: str, required_skills: str):
     connection.close()
 
     return opportunities
+@router.post("/match")
+def match_skills(student_skills: str, required_skills: str):
+    result = calculate_match(
+        student_skills,
+        required_skills
+    )
+
+    return result
